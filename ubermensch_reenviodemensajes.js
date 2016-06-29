@@ -13,7 +13,11 @@ exports.reenvio = function(usuarios){
 
 		if((typeof(usuarios.usuarios)!= 'undefined')&&(usuarios.reenvio.usuarios)){
 
+			
+
 			for(var k in usuarios.usuarios){
+
+
 
 				api.forwardMessage({
 		            chat_id: usuarios.usuarios[k].user_id,

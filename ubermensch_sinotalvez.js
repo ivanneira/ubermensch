@@ -1,4 +1,4 @@
-exports.juego = function(a){
+exports.juego = function(api,message){
 
     if(/^[Dd]ios/.test(message.text)){
 
@@ -21,12 +21,10 @@ exports.juego = function(a){
                     responseString = "No"
         }
 
-        api.sendMessage({
-            chat_id: message.chat.id,
-            text: "* La respuesta es... " + responseString + "*",
-            parse_mode:"Markdown",
-            reply_to_message_id: message.message_id
-        })
+        respuesta = "* La respuesta es... " + responseString + "*"
 
+        var enviar = require('./ubermensch_enviarmensaje.js')
+
+        enviar.envioDeMensaje(api,message.chat.id, respuesta, message.message_id)
     }
 }
