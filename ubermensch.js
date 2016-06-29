@@ -1,7 +1,6 @@
 //ubermensch
 
 var TelegramBot = require('telegram-bot-api');
-var colors      = require('colors');
 
 var api = new TelegramBot({
         token: '[TOKEN HERE]',
@@ -11,12 +10,15 @@ var api = new TelegramBot({
     }
 })
 
-//juego si no y tal vez.
+//REQUIRE juego si no y tal vez.
 const siNoTalVez = require('./ubermensch_sinotalvez.js')
 
-//reenvío de documentos
+//REQUIRE reenvío de documentos
 const reenvioDeMensajes = require('./ubermensch_reenviodemensajes.js')
 const usuarios = require('./ubermensch_usuarios.js')
+
+//REQUIRE juego random
+const random = require('./ubermensch_random.js')
 
 //evento de llegada de mensaje de telegram
 api.on('message',function(message){
@@ -26,6 +28,9 @@ api.on('message',function(message){
 
 //reenvío de documentos
 	reenvioDeMensajes.reenvio(api,message,usuarios.usuarios)
+
+//juego random
+	random.randomMessage(api,message)
 
 	//console.log(message)
 

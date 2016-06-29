@@ -1,3 +1,4 @@
+//reenvío a privado
 exports.reenvio = function(api,message,usuarios){
 
 	var enviar = require('./ubermensch_enviarmensaje.js')
@@ -22,3 +23,12 @@ exports.reenvio = function(api,message,usuarios){
 	}
 }
 
+exports.reenvioAChat = function(api,message,randomNumber){
+	console.log(message.chat.id)
+	console.log(randomNumber)
+    api.forwardMessage({
+        chat_id: message.chat.id,
+        from_chat_id: message.chat.id,
+        message_id: randomNumber
+    });
+}
