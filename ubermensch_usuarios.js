@@ -1,15 +1,14 @@
 exports.usuarios = {
 
 	'reenvio': {
-		'administrador': true,
-		'usuarios': false
+		'administrador': false,
+		'usuarios': true
 	},
 
 	'administrador': '14910151',
 
-	'usuarios': {
+	'usuarios': [
 
-		'name': 'ivan_test',
-		'user_id': '14910151'
-	}
+		'14910151', //test
+	]
 }

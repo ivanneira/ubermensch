@@ -4,7 +4,7 @@ var TelegramBot = require('telegram-bot-api');
 var colors      = require('colors');
 
 var api = new TelegramBot({
-        token: '[token here]',
+        token: '[TOKEN HERE]',
         updates: {
             enabled: true,
             get_interval: 200
@@ -25,8 +25,8 @@ api.on('message',function(message){
 	siNoTalVez.juego(api,message)
 
 //reenvío de documentos
-	//reenvioDeMensajes.reenvío(usuarios)
+	reenvioDeMensajes.reenvio(api,message,usuarios.usuarios)
 
-	console.log(message)
+	//console.log(message)
 
 })

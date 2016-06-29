@@ -1,9 +1,11 @@
 exports.juego = function(api,message){
 
-    if(/^[Dd]ios/.test(message.text)){
+    //en caso de que una frase comienze con "dios"
+    if(/^[Dd][Ii][Oo][Ss][ ,]/.test(message.text)){
 
         var randomAnswer = Math.floor((Math.random() * 3) + 1)
         var responseString = "No";
+        var enviar = require('./ubermensch_enviarmensaje.js')
 
         switch(randomAnswer){
             case 1:
@@ -15,15 +17,13 @@ exports.juego = function(api,message){
                 break
             case 3:
                     responseString = "Tal vez"
-              break
+                break
               
             default:
                     responseString = "No"
         }
 
         respuesta = "* La respuesta es... " + responseString + "*"
-
-        var enviar = require('./ubermensch_enviarmensaje.js')
 
         enviar.envioDeMensaje(api,message.chat.id, respuesta, message.message_id)
     }
