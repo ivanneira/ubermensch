@@ -3,34 +3,30 @@
 var TelegramBot = require('telegram-bot-api');
 
 var api = new TelegramBot({
-        token: '[TOKEN HERE]',
-        updates: {
-            enabled: true,
-            get_interval: 200
+    token: '[TOKEN HERE]',
+    updates: {
+        enabled: true,
+        get_interval: 200
     }
 })
 
-//manejo de la web
+//manejo de la web------------------
 var express = require('express')
 var app = require('express')()
 var server = require('http').Server(app)
+//socket.io
 var io = require('socket.io')(server)
 
+//puerto del servidor
 server.listen(3000)
 
+//direccionamiento estático
 app.use(express.static('public'))
+
+//index
 app.get('/', function (req, res) {
   res.sendfile(__dirname + '/public/index.html')
 })
-
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' })
-  socket.on('my other event', function (data) {
-    console.log(data)
-  })
-})
-
-//variables de express
 
 //REQUIRE juego si no y tal vez.
 const siNoTalVez = require('./ubermensch_sinotalvez.js')
@@ -42,7 +38,7 @@ const usuarios = require('./ubermensch_usuarios.js')
 //REQUIRE juego random
 const random = require('./ubermensch_random.js')
 
-//evento de llegada de mensaje de telegram
+//evento de llegada de mensaje de telegram***************************
 api.on('message',function(message){
 
 //juego si no y tal vez.
@@ -56,5 +52,15 @@ api.on('message',function(message){
 
 	//console.log(message)
 
+	streamMessage(message)
 })
 
+//EVENTOS de socket.io
+io.on('connect', function () {  
+})
+
+//funcion que emite el mensaje
+function streamMessage(message){
+
+	io.emit('message', message)
+}
