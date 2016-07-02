@@ -3,7 +3,7 @@
 var TelegramBot = require('telegram-bot-api')
 
 var api = new TelegramBot({
-    token: '226780424:AAEhp8jN7gsvu43dhl9Z7ZqDUFLg6Uul9uY',
+    token: '[TOKEN HERE]',
     updates: {
         enabled: true,
         get_interval: 200
@@ -53,19 +53,18 @@ api.on('message',function(message){
   console.log('new telegram message event')
 
 //juego si no y tal vez.
-	sendToWeb(siNoTalVez.juego(api,message))
+  sendToWeb(siNoTalVez.juego(api,message))
 
 //reenvío de documentos
-	reenvioDeMensajes.reenvio(api,message,usuarios.usuarios)
+  reenvioDeMensajes.reenvio(api,message,usuarios.usuarios)
 
 //juego random
-	random.randomMessage(api,message)
-	
+  random.randomMessage(api,message)
+  
 })
 
+//en caso de que el mensaje sea dirigido a dios, envía el evento socket
 function sendToWeb(responseArray){
-  
-
   
   if(typeof(responseArray)!='undefined'){
     
@@ -75,7 +74,7 @@ function sendToWeb(responseArray){
 
 }
 
-
+//servidor en escucha
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
   var addr = server.address();
   console.log("Chat server listening at", addr.address + ":" + addr.port)

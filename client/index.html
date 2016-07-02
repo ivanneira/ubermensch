@@ -8,6 +8,9 @@
 
 		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 		
+		<!--Google Fonts-->
+		<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+		 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
 
 
 	</head>
@@ -29,7 +32,6 @@
 			</div>
 
 			<div class="col-md-6 col-sm-6 col-xs-12" id="container">
-				
 
 			</div>
 			
@@ -43,46 +45,45 @@
 
 	var socket = io.connect()
 	
+	//evento de conexión de socket.io
 	socket.on('connect', function () {
-      console.log('conectado')
+      console.log('connected')
     })
+    
+    //contador de mensajes para asignar ids
+    var prayCount = 0
 
+	//evento de socket.io
 	socket.on('pray', function(responseArray) {
 		
-		console.log('received from server')
+		console.log('pray received from server')
 		
-		if(responseArray!='')
-		{
-	
-			var prayer = "<span class='label label-primary'> de: " + responseArray[0].from.first_name + "</span>"
-			var text = "<span class='label label-default'> plegaria: " + responseArray[0].text + "</span>"
-			var response
+		//container en blanco
+		var prayContainer = "<div class='pray' id='pray-" + prayCount + "'><p class='prayerName' id='prayerName-" + prayCount + "'></p><p class='prayerText' id='prayerText-" + prayCount + "'></p> <p class='godText'>Respuesta: <span class='godResponse' id='godResponse-" + prayCount + "'></span></p></div>"
+		
+		//valores recibidos
+		var prayerName = responseArray[0].from.first_name
+		var prayerText = responseArray[0].text
+		var godResponse = responseArray[1]
+		
+		//agrego container
+		$('#container').append(prayContainer)
+		
+		//valor de rotacion
+		var randomRotate = Math.floor(Math.random()*10) - 5;
 			
-			switch(responseArray[1]){
-			case 'Si':
-				response = "<span class='label label-success'> respuesta: " + responseArray[1] + "</span>"
-				break
-			case 'No':
-				response = "<span class='label label-danger'> respuesta: " + responseArray[1] + "</span>"
-				break
-			case 'Tal vez':
-				response = "<span class='label label-warning'> respuesta: " + responseArray[1] + "</span>"
-				break
-			}
-	
-			var stream = prayer + " " + text + " <br> " + response + "<br/><br/>"
-			
-			$('#container').append(stream)
-		}
-
+		$("#pray-" + prayCount).css("transform","rotate("+ randomRotate +"deg)")
+		
+		//relleno de mensaje
+		$('#prayerName-' + prayCount).text(prayerName)
+		$('#prayerText-' + prayCount).text(prayerText)
+		$('#prayerName-' + prayCount).text(prayerName)
+		$('#godResponse-' + prayCount).text(godResponse)
+		
+		prayCount = prayCount + 1 
 	})
 
 </script>
-
-
-
-
-
 </html>
 
 

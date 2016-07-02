@@ -24,7 +24,8 @@ exports.juego = function(api,message){
         }
 
         var respuesta = "* La respuesta es... " + responseString + "*"
-
+        
+        //envía mensaje a privado en caso de que esté permitido en json de usuarios
         enviar.envioDeMensaje(api,message.chat.id, respuesta, message.message_id)
         
         return [message, responseString]
