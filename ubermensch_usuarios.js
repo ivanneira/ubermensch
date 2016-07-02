@@ -2,7 +2,7 @@ exports.usuarios = {
 
 	'reenvio': {
 		'administrador': false,
-		'usuarios': true
+		'usuarios': false
 	},
 
 	'administrador': '14910151',

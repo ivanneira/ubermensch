@@ -3,7 +3,7 @@
 var TelegramBot = require('telegram-bot-api');
 
 var api = new TelegramBot({
-    token: '[TOKEN HERE]',
+    token: '[TOKER HERE]',
     updates: {
         enabled: true,
         get_interval: 200
@@ -42,7 +42,7 @@ const random = require('./ubermensch_random.js')
 api.on('message',function(message){
 
 //juego si no y tal vez.
-	siNoTalVez.juego(api,message)
+	sendToWeb(siNoTalVez.juego(api,message))
 
 //reenvío de documentos
 	reenvioDeMensajes.reenvio(api,message,usuarios.usuarios)
@@ -52,15 +52,22 @@ api.on('message',function(message){
 
 	//console.log(message)
 
-	streamMessage(message)
+	//streamMessage(message)
 })
 
 //EVENTOS de socket.io
 io.on('connect', function () {  
 })
 
+/*
 //funcion que emite el mensaje
 function streamMessage(message){
 
 	io.emit('message', message)
+}
+*/
+
+function sendToWeb(responseArray){
+
+	io.emit('pray', responseArray)
 }

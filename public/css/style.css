@@ -1,0 +1,63 @@
+body {
+	background-color: #dee9f1;
+	background-image: url('/images/clouds.png');
+}
+/*
+#logo {
+
+    max-width: 100px; 
+    max-height: 100px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: auto;
+    z-index: 2;
+}
+
+#ojo {
+	z-index: 1;
+	max-width: 100px; 
+    max-height: 100px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: auto;
+}*/
+
+#ojo {
+	background-repeat: no-repeat;
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	z-index:-1;
+	-webkit-animation: look 10s infinite normal;
+}
+
+#logo {
+	background-repeat: no-repeat;
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+
+@-webkit-keyframes look {
+    0% {
+        transform:translateX(0px);
+    }
+    25% {
+        transform:translateX(4px);
+    }
+    50% {
+        transform:translateX(-4px);
+    }
+    100% {
+        transform:translateX(0px);
+    }
+}
+
+#container {
+	margin-top: 200px;
+	padding: 50px;
+}

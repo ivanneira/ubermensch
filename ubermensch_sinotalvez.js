@@ -26,5 +26,7 @@ exports.juego = function(api,message){
         respuesta = "* La respuesta es... " + responseString + "*"
 
         enviar.envioDeMensaje(api,message.chat.id, respuesta, message.message_id)
+
+        return [message, responseString]
     }
 }
