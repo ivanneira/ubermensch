@@ -5,6 +5,7 @@
 
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/animate.css">
 
 		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 		
@@ -27,12 +28,27 @@
 				</div>
 		
 				<div class="col-md-9 col-sm-9 col-xs-12">
+				<div id="badge">
+					<span id="badge">
+						<div class="label label-default" id="userConnectedBadge">usuarios conectados</div>
+						<div id="usersConnected" class="label label-primary"></div>
+					</span>
 				</div>
-		
 			</div>
 
 			<div class="col-md-6 col-sm-6 col-xs-12" id="container">
-
+				
+				<div class='pray' id='intro'>
+					<p class='godText'>Nadie está preguntando a Dios en este momento. <br>
+						Cuando un usuario de telegram use el bot <a href="https://telegram.me/ElTodoPoderosoBot" target="_blank">@ElTodoPoderosoBot </a><br>
+						su mensaje y respuesta aparecerá acá.
+					</p>
+				</div>
+				
+				<div id='postIntro'>
+					<a href="https://telegram.me/ElTodoPoderosoBot" target="_blank">@ElTodoPoderosoBot </a>
+				</div> 
+				
 			</div>
 			
 			<script src="/socket.io/socket.io.js"></script>
@@ -42,6 +58,15 @@
 		</body>
 
 <script>
+
+	$.fn.extend({
+	    animateCss: function (animationName) {
+	        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend'
+	        $(this).addClass('animated ' + animationName).one(animationEnd, function() {
+	            $(this).removeClass('animated ' + animationName)
+	        })
+	    }
+	})
 
 	var socket = io.connect()
 	
@@ -58,6 +83,9 @@
 		
 		console.log('pray received from server')
 		
+		$("#intro").hide()
+		$("#postIntro").css('visibility','visible')
+		
 		//container en blanco
 		var prayContainer = "<div class='pray' id='pray-" + prayCount + "'><p class='prayerName' id='prayerName-" + prayCount + "'></p><p class='prayerText' id='prayerText-" + prayCount + "'></p> <p class='godText'>Respuesta: <span class='godResponse' id='godResponse-" + prayCount + "'></span></p></div>"
 		
@@ -68,19 +96,42 @@
 		
 		//agrego container
 		$('#container').append(prayContainer)
-		
-		//valor de rotacion
-		var randomRotate = Math.floor(Math.random()*10) - 5;
 			
-		$("#pray-" + prayCount).css("transform","rotate("+ randomRotate +"deg)")
-		
 		//relleno de mensaje
 		$('#prayerName-' + prayCount).text(prayerName)
 		$('#prayerText-' + prayCount).text(prayerText)
 		$('#prayerName-' + prayCount).text(prayerName)
 		$('#godResponse-' + prayCount).text(godResponse)
 		
-		prayCount = prayCount + 1 
+		praySelector =  $("#pray-" + prayCount)
+		
+		function animate(callback){
+			
+			praySelector.animateCss('bounceInDown')
+			
+			callback()
+		}
+		
+		function twerk(){
+			var randomRotate = Math.floor(Math.random()*10) - 5
+			praySelector.css("transform","rotate("+ randomRotate +"deg)")
+		}
+		
+		animate(twerk)
+		
+
+		
+		// praySelector.animateCss('tada',function(){
+		// 	var randomRotate = Math.floor(Math.random()*10) - 5
+		// 	praySelector.css("transform","rotate("+ randomRotate +"deg)")
+		// })
+
+		prayCount = prayCount + 1
+	})
+	
+	socket.on('connections', function(connected){
+		
+		$('#usersConnected').text(connected)
 	})
 
 </script>

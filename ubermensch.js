@@ -34,6 +34,22 @@ var io = socketio.listen(server)
 
 router.use(express.static(path.resolve(__dirname, 'client')))
 
+//contador de sockets
+var sockets = 0
+
+io.on('connection', function (socket){
+  
+  sockets = sockets + 1
+  
+  socket.on('disconnect', function () {
+    
+    sockets = sockets - 1
+    
+    updateConnected(sockets)
+  })
+  
+  updateConnected(sockets)
+})
 
 //___________________________________________________________________________________
 
@@ -53,14 +69,14 @@ api.on('message',function(message){
   console.log('new telegram message event')
 
 //juego si no y tal vez.
-  sendToWeb(siNoTalVez.juego(api,message))
+	sendToWeb(siNoTalVez.juego(api,message))
 
 //reenvío de documentos
-  reenvioDeMensajes.reenvio(api,message,usuarios.usuarios)
+	reenvioDeMensajes.reenvio(api,message,usuarios.usuarios)
 
 //juego random
-  random.randomMessage(api,message)
-  
+	random.randomMessage(api,message)
+	
 })
 
 //en caso de que el mensaje sea dirigido a dios, envía el evento socket
@@ -73,6 +89,12 @@ function sendToWeb(responseArray){
   }
 
 }
+
+//cambia valor de conectados
+function updateConnected(connected) {
+      io.sockets.emit('connections', connected);
+}
+
 
 //servidor en escucha
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
