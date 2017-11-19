@@ -49,7 +49,7 @@ io.on('connection', function (socket){
 
 // Importamos todos los módulos.
 
-const siNoTalVez = require('./ubermensch_sinotalvez.js')
+const respuestas = require('./ubermensch_respuestas.js')
 const reenvioDeMensajes = require('./ubermensch_reenviodemensajes.js')
 const usuarios = require('./ubermensch_usuarios.js')
 const random = require('./ubermensch_random.js')
@@ -65,8 +65,8 @@ api.on('message', function(message) {
 		mText = message.text
 		console.log('Grupo: [' + message.chat.title + '] ' + 'Nombre: (' + message.from.first_name + '): ' + mText)
 		
-		// Preguntas:
-		sendToWeb(siNoTalVez.juego(api, message))
+		// Respuestas:
+		sendToWeb(respuestas.juego(api, message))
 
 		// Reenvío Random:
 		reenvioDeMensajes.reenvio(api, message, usuarios.usuarios)
@@ -79,7 +79,7 @@ api.on('message', function(message) {
 
 // En caso de que el mensaje sea dirigido a Dios, envía el evento socket
 function sendToWeb(responseArray){
-	if(typeof(responseArray)!='undefined'){
+	if(typeof(responseArray) != 'undefined'){
 		io.sockets.emit('pray', responseArray)
 	}
 }

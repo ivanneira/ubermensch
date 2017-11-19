@@ -1,0 +1,136 @@
+body {
+	background-color: #dee9f1;
+	background-repeat: no-repeat;
+	background-image: url('/images/clouds.png');
+}
+
+#ojo {
+	background-repeat: no-repeat;
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	z-index:-1;
+	-webkit-animation: look 10s infinite normal;
+}
+
+#logo {
+	background-repeat: no-repeat;
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+
+@-webkit-keyframes look {
+    0% {
+        transform:translateX(0px);
+    }
+    25% {
+        transform:translateX(4px);
+        transform: rotate(20deg);
+    }
+    50% {
+        transform:translateX(-4px);
+        transform: rotate(-20deg);
+    }
+    100% {
+        transform:translateX(0px);
+    }
+}
+
+#container {
+	margin-top: 200px;
+	padding: 50px;
+}
+.prayerName {
+    color: grey;
+    font-family: 'Arial';
+    font-size: 18px;
+}
+
+.prayerText {
+    font-family: 'Indie Flower', serif;
+    font-size: 18px;
+}
+
+.godText{
+    font-family: 'Tangerine', serif;
+    font-size: 28px;
+    text-align: right;
+}
+
+.pray{
+    padding-top: 4px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 0px;
+    background-color: white;
+    -webkit-box-shadow: 10px 10px 47px -8px rgba(0,6,46,0.8);
+    -moz-box-shadow: 10px 10px 47px -8px rgba(0,6,46,0.8);
+    box-shadow: 10px 10px 47px -8px rgba(0,6,46,0.8);
+    border-radius: 4px 0px 0px 4px;
+    -moz-border-radius: 4px 0px 0px 4px;
+    -webkit-border-radius: 4px 0px 0px 4px;
+    border: 1px solid #ffffff;
+    background: rgba(240,240,240,1);
+    /*GRADIENTE*/
+    background: rgba(240,240,240,1);
+    background: -moz-linear-gradient(-45deg, rgba(240,240,240,1) 0%, rgba(255,255,255,1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(240,240,240,1)), color-stop(100%, rgba(255,255,255,1)));
+    background: -webkit-linear-gradient(-45deg, rgba(240,240,240,1) 0%, rgba(255,255,255,1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(240,240,240,1) 0%, rgba(255,255,255,1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(240,240,240,1) 0%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(135deg, rgba(240,240,240,1) 0%, rgba(255,255,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#ffffff', GradientType=1 );
+}
+
+.godResponse{
+    font-family: 'Arial';
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#userConnectedBadge {
+    width: 150px;
+    height: 20px;
+    color: grey;
+    background-color: white;
+    /*sombras*/
+    -webkit-box-shadow: 10px 10px 36px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 36px -4px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 36px -4px rgba(0,0,0,0.75);
+}
+
+#usersConnected {
+    /*sombras*/
+    -webkit-box-shadow: 10px 10px 36px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 36px -4px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 36px -4px rgba(0,0,0,0.75);
+}
+
+#badge {
+    margin-top: 20px;
+}
+
+#postIntro {
+    visibility: hidden;
+    margin-bottom: 40px;
+    width: 160px;
+    height: 20px;
+}
+
+#postIntro a {
+    font-family: 'Arial';
+    font-weight: bold;
+    color: white;
+}
+
+#intro a {
+    font-family: 'Arial';
+    font-weight: bold;
+    color: LightBlue;
+    font-size: 18px;
+}
