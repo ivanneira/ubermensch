@@ -4,19 +4,11 @@ var TelegramBot = require('telegram-bot-api')
 
 // The token is get from a file with it inside
 var api = new TelegramBot({
-<<<<<<< HEAD
 	token: fs.readFile("http_key"),
 	updates: {
 		enabled: true,
 		get_interval: 200
 	}
-=======
-    token: '[TOKEN HERE]',
-    updates: {
-        enabled: true,
-        get_interval: 200
-    }
->>>>>>> a94f2703e5972b8eb0b2eaadfff4ff36b51d4b47
 })
 
 // # SimpleServer
