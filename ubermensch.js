@@ -1,25 +1,22 @@
-fs = require('fs');
-
-var TelegramBot = require('telegram-bot-api')
-
-// The token is get from a file with it inside
-var api = new TelegramBot({
-	token: fs.readFile("http_key"),
-	updates: {
-		enabled: true,
-		get_interval: 200
-	}
-})
-
-// # SimpleServer
-//
-// A simple chat server using Socket.IO, Express, and Async.
-
+var fs = require('fs');
 var http = require('http')
 var path = require('path')
 var async = require('async')
 var socketio = require('socket.io')
 var express = require('express')
+var TelegramBot = require('telegram-bot-api')
+
+var token = fs.readFileSync(path.resolve(__dirname, 'http_key')).slice(0, -1)
+console.log("Using token " + token)
+
+// The token is get from a file with it inside
+var api = new TelegramBot({
+	token: token,
+	updates: {
+		enabled: true,
+		get_interval: 200
+	}
+})
 
 // ## SimpleServer
 // Creates a new instance of SimpleServer with the following options:
