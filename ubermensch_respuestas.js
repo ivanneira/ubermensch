@@ -3,7 +3,7 @@ exports.juego = function(api,message){
     //en caso de que una frase comienze con "dios"
     if(/^dios,? ¿?.*\??/i.test(message.text)){
 
-        var randomAnswer = Math.floor(Math.random() * 3)
+        var randomAnswer = Math.floor(Math.random() * 6)
    	var responseString = ""
         var enviar = require('./ubermensch_enviarmensaje.js')
 
@@ -30,7 +30,7 @@ exports.juego = function(api,message){
 			responseString = "intentes preguntar de nuevo, pero con rima."
 			break
 		default:
-			responseString = "No."
+			responseString = "no."
         }
 
         respuesta = "Las antiguas Escrituras dicen que *" + responseString + "*"
