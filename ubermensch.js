@@ -58,7 +58,7 @@ api.on('message', function(message) {
 	// Loguea mensaje en consola
 	var mText = '[no text]'
 
-	if(typeof(message.text) != 'undefined'){
+	if(message != undefined && typeof(message.text) != 'undefined'){
 		mText = message.text
 		console.log('Grupo: [' + message.chat.title + '] ' + 'Nombre: (' + message.from.first_name + '): ' + mText)
 		
