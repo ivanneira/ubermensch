@@ -1,7 +1,7 @@
 exports.juego = function(api,message){
 
 	// En caso de que una frase comienze con "Dios"
-	if(/^dios,? Â¿?.*\??/i.test(message.text)) {
+	if(/^dios,? ¿?.*\??/i.test(message.text)) {
 		var enviar = require('./ubermensch_enviarmensaje.js')
 		
 		var leftSides = [
