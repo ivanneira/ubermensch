@@ -1,40 +1,40 @@
 exports.juego = function(api,message){
 
-    //en caso de que una frase comienze con "dios"
-    if(/^dios,? ¿?.*\??/i.test(message.text)){
+	// En caso de que una frase comienze con "Dios"
+	if(/^dios,? ¿?.*\??/i.test(message.text)) {
 
-        var randomAnswer = Math.floor(Math.random() * 6)
-   	var responseString = ""
-        var enviar = require('./ubermensch_enviarmensaje.js')
+		var randomAnswer = Math.floor(Math.random() * 6)
+		var responseString = ""
+		var leftSides = [
+			"Las antiguas Escrituras dicen que",
+			"Mis ángeles dicen que",
+			"Está escrito que"
+		]
 
-        switch(randomAnswer){
-		case 0:
-			responseString = "de eso no hay nada escrito."
-			break
-		case 1:
-			responseString = "sí."
-			break
-		case 2:
-			responseString = "tal vez."
-			break
-		case 3:
-			responseString = "mis ángeles dicen que no."
-			break
-		case 4:
-			responseString = "puede ser, puede ser. Todo puede ser."
-			break
-		case 5:
-			responseString = "ni Dios lo sabe."
-			break
-		case 6:
-			responseString = "intentes preguntar de nuevo, pero con rima."
-			break
-		default:
-			responseString = "no."
-        }
+		var enviar = require('./ubermensch_enviarmensaje.js')
 
-        respuesta = "Las antiguas Escrituras dicen que *" + responseString + "*"
+		switch(randomAnswer) {
+			case 0:
+				rightSide = "sí"
+				break
+			case 1:
+				rightSide = "tal vez"
+				break
+			case 2:
+				rightSide = "mis ángeles dicen que no"
+				break
+			case 3:
+				rightSide = "intentes preguntar de nuevo, pero con rima"
+				break
+			case 4:
+				rightSide = "absolutamente sí"
+				break
+			default:
+				rightSide = "no"
+		}
 
-        enviar.envioDeMensaje(api, message.chat.id, respuesta, message.message_id)
-    }
+		responseString = leftSide + " *" + rightSide + "*."
+
+		enviar.envioDeMensaje(api, message.chat.id, responseString, message.message_id)
+	}
 }
