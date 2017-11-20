@@ -1,22 +1,22 @@
 exports.juego = function(api,message){
 
 	// En caso de que una frase comienze con "Dios"
-	if(/^dios,? ¿?.*\??/i.test(message.text)) {
+	if(/^dios,? Â¿?.*\??/i.test(message.text)) {
 		var enviar = require('./ubermensch_enviarmensaje.js')
 		
 		var leftSides = [
 			"Las antiguas Escrituras dicen que",
 			"Mis ángeles dicen que",
-			"Está escrito qu"
+			"Está escrito que"
 		]
 
 		var rightSides = [
-			"s�",
+			"sí",
 			"tal vez",
 			"no",
 			"intentes preguntar de nuevo, pero con rima",
 			"absolutamente",
-			"sipirir�"
+			"sipirirí"
 		]
 
 		var leftSide = leftSides[Math.floor(Math.random() * leftSides.length)];
