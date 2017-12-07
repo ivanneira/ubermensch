@@ -6,6 +6,9 @@ var socketio = require('socket.io')
 var express = require('express')
 var TelegramBot = require('telegram-bot-api')
 
+var dontProcessMessages = process.argv[2] === "--no-message-processing"
+var skippedMessages = 0
+
 var token = fs.readFileSync(path.resolve(__dirname, 'http_key')).slice(0, -1)
 console.log("Using token " + token)
 
@@ -54,7 +57,12 @@ const ayuda = require('./ubermensch_ayuda.js')
 
 // Registramos el evento que procesa los mensajes
 api.on('message', function(message) {
-  
+	if (dontProcessMessages) {
+		skippedMessages++
+		console.log("Skipped " + skippedMessages + " messages")
+		return
+	}
+
 	// Loguea mensaje en consola
 	var mText = '[no text]'
 
