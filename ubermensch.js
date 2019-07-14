@@ -3,7 +3,7 @@
 var TelegramBot = require('telegram-bot-api')
 
 var api = new TelegramBot({
-    token: '[TOKEN HERE]',
+    token: '210068730:AAHS4SP6z52ZBoDMQvemDe8rrvKIUZBqrn0',
     updates: {
         enabled: true,
         get_interval: 200
@@ -66,10 +66,16 @@ const random = require('./ubermensch_random.js')
 //evento de llegada de mensaje de telegram***************************
 api.on('message',function(message){
   
-  console.log('new telegram message event')
+  //console.log('new telegram message event')
+
+  var usuario = message.from.username
+  var grupo = message.chat.title
+  var texto = message.texto
+  //console.log("{" + grupo + "}[" + usuario +"]<" + texto + ">")
 
 //juego si no y tal vez.
-	sendToWeb(siNoTalVez.juego(api,message))
+  //sendToWeb(siNoTalVez.juego(api,message))
+  siNoTalVez.juego(api,message)
 
 //reenvío de documentos
 	reenvioDeMensajes.reenvio(api,message,usuarios.usuarios)
@@ -97,7 +103,7 @@ function updateConnected(connected) {
 
 
 //servidor en escucha
-server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
+server.listen(process.env.PORT || 3000, process.env.IP || "localhost", function(){
   var addr = server.address();
   console.log("Chat server listening at", addr.address + ":" + addr.port)
 });
